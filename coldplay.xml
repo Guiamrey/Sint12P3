@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='ISO-8859-15' standalone='no'?>
+
+<!DOCTYPE Interprete SYSTEM "iml.dtd">
+<Interprete>
+    <Nombre>
+        <NombreG>Coldplay</NombreG>
+        <Id>Coldplay</Id>
+    </Nombre>
+    <Nacionalidad>Americano</Nacionalidad>
+    <Album tipo="nuevo">
+        <NombreA> Viva la Vida or Death and All His Friends</NombreA>
+        <Año>2008</Año>
+        <Cancion estilo="Pop barroco">
+            <NombreT>Viva la vida</NombreT>
+            Y disfrutarla de fiesta
+            <Duracion>04:04</Duracion>
+            <Version>
+                <Nombre>
+                    <NombreC>dani Martin</NombreC>
+                    <Id>DMartin</Id>
+                </Nombre>
+                <IML>DMartin.xml</IML>
+            </Version>
+        </Cancion>
+        <Cancion estilo="Pop-rock">
+            <NombreT>Lovers in Japan</NombreT>
+            Quiero ir a Japan, pero no puedo
+            <Duracion>03:56</Duracion>
+            mu caro todo
+        </Cancion>
+    </Album>
+</Interprete>

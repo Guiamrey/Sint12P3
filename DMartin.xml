@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='ISO-8859-15' standalone='no'?>
+
+<!DOCTYPE Interprete SYSTEM "iml.dtd">
+<Interprete>
+    <Nombre>
+        <NombreC>Dani Martin</NombreC>
+        <Id>DMartin</Id>
+    </Nombre>
+    <Nacionalidad>Español</Nacionalidad>
+    <Album tipo="nuevo" temas="3">
+
+        <NombreA>Pequeño</NombreA><Año>2012</Año>
+
+
+        <Cancion estilo="Pop-rock">
+
+
+
+
+            <NombreT>16 añitos</NombreT>
+            Sweet sixteen
+
+
+            <Duracion>03:55</Duracion>
+
+
+        </Cancion>
+
+        <Cancion estilo="Pop-rock">
+            <NombreT>Mi lamento</NombreT>
+            Y mi alegría
+            <Duracion>02:57</Duracion>
+            <Version>
+                <Nombre>
+                    <NombreC>Joaquin Sabina</NombreC>
+                    <Id>JSabina</Id>
+                </Nombre>
+                <IML>sabina.xml</IML>
+            </Version>
+        </Cancion>
+
+        <Cancion estilo="Pop">
+            <NombreT>Trouble</NombreT>
+            Estamos en problemas?
+            <Duracion>04:22</Duracion>
+            <Version>
+                <Nombre>
+                    <NombreG>Imagine Dragons</NombreG>
+                    <Id>ImDr</Id>
+                </Nombre>
+                <IML>ImDragons.xml</IML>
+            </Version>
+        </Cancion>
+
+        <Cancion estilo="Pop">
+
+
+
+
+            <NombreT>Viva la vida</NombreT>
+
+
+
+            Pero que no lo haga la muerte
+            <Duracion>03:40</Duracion>
+            <Version>
+                <Nombre>
+                    <NombreG>Coldplay</NombreG>
+                    <Id>Coldplay</Id>
+                </Nombre>
+                <IML>coldplay.xml</IML>
+            </Version>
+        </Cancion>
+        
+    </Album>
+
+</Interprete>

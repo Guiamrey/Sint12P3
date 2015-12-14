@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='ISO-8859-15' standalone='no'?>
+
+<!DOCTYPE Interprete SYSTEM "C:\Users\ruth_\Desktop\Proyectos\ProcessIML\iml.dtd">
+
+<Interprete>
+	<Nombre>
+		<NombreC>Imagine Dragons</NombreC>
+		<Id>ImDr</Id>
+	</Nombre>
+	<Nacionalidad>Americano</Nacionalidad>
+	<Album tipo="nuevo" temas="3">
+
+		<NombreA>Smoke + Mirrors</NombreA>
+		<Año>2015</Año>
+
+		<Cancion estilo="rock alternativo">
+			<NombreT>Trouble</NombreT>
+			Esta cancion no existe
+			<Duracion>03:45</Duracion>
+			<Version>
+				<Nombre>
+					<NombreC>Dani Martin</NombreC>
+					<Id>DaniM</Id>
+				</Nombre>
+				<IML>DMartin.xml</IML>
+			</Version>
+			Y aun asi es la hostia
+		</Cancion>
+
+		<Cancion estilo="rock alternativo">
+			<NombreT>Polaroid</NombreT>
+			Menuda version le hace el sabina
+			<Duracion>03:50</Duracion>
+			<Version>
+				<Nombre>
+					<NombreC>Joaquin Sabina</NombreC>
+					<Id>JSabina</Id>
+				</Nombre>
+				<IML>sabina.xml</IML>
+			</Version>
+		</Cancion>
+
+		<Cancion estilo="rock alternativo">
+			<NombreT>Shots</NombreT>
+			<Duracion>03:52</Duracion>
+
+		</Cancion>
+
+
+	</Album>
+</Interprete>
