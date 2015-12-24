@@ -1,9 +1,16 @@
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Source;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +33,7 @@ public class XML_DTD {
             listaXML.remove(0);
             listaXMLleidos.add(url);
         }
+
         for (int i = 0; i < listError.size(); i++) {
             System.out.println(listError.get(i));
         }
@@ -38,10 +46,10 @@ public class XML_DTD {
           //ArrayList list = getCancionesCantante("Todos", "Todos");
 /***consulta 2****/
         //ArrayList list = getAnhoAlbumes();
-        ArrayList list = getAlbumesPorAnho("todos");
+       // ArrayList list = getAlbumesPorAnho("todos");
        // ArrayList list = getEstilo("Todos", "todos");
        // ArrayList list = getCancionesEstilo("Todos", "Todos", "Todos");
-        System.out.println("\n\n");
+     /*   System.out.println("\n\n");
         if (list.isEmpty()) {
             System.out.println("Lista vacia");
             return;
@@ -49,34 +57,33 @@ public class XML_DTD {
             for (int i = 0; i < list.size(); i++) {
                 System.out.println(list.get(i));
             }
-        }
+        }*/
 
     }
 
     public static void processIML(String XML) {
-        System.out.println(XML);
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setValidating(true);
-        DocumentBuilder db;
-        Document doc;
+      //  System.out.println(XML);
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance(); //
+        dbf.setValidating(true); //
+        DocumentBuilder db; //
+        Document doc; //
         XML_DTD_ErrorHandler errorHandler = new XML_DTD_ErrorHandler();
         try {
-            db = dbf.newDocumentBuilder();
-            db.setErrorHandler(errorHandler);
-             doc = db.parse(XML);
-           /* if (XML.trim().startsWith("http")) {
-                // doc = db.parse(new URL(XML).openStream(), "http://localhost:8012/sint12/");
-                doc = db.parse(new URL(XML).openStream());
-            } else {
-                //doc = db.parse(new URL("http://clave.det.uvigo.es:8080/~sintprof/15-16/p2/"+XML).openStream(), "http://localhost:8012/sint12/");
-                doc = db.parse(new URL("http://178.62.190.10/" + XML).openStream());
-            }*/
+            db = dbf.newDocumentBuilder(); //
+            db.setErrorHandler(errorHandler); //
+            doc = db.parse(XML);
+
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = sf.newSchema(new File("iml.xsd"));
+            Validator validator = schema.newValidator();
+            validator.validate(new DOMSource(doc));
+
+            System.out.println("DOCUMENTO VALIDO: "+XML);
+
             listDoc.add(doc);
             NodeList iml = doc.getElementsByTagName("IML");
             for (int i = 0; i < iml.getLength(); i++) {
                 String IML = iml.item(i).getTextContent().trim();
-                /*if (!IML.startsWith("http"))
-                    IML = "http://178.62.190.10/" + IML;*/
                 if ((!listaXML.contains(IML) && !IML.equals("")) && !listaXMLleidos.contains(IML)) {
                     listaXML.add(IML);
                 }
@@ -91,6 +98,8 @@ public class XML_DTD {
                 listFichError.add("Fichero erróneo: " + XML);
             }
         } catch (SAXException e) {
+            System.out.println("DOCUMENTO INVALIDO: "+XML);
+
             if (errorHandler.hasError() || errorHandler.hasWarning() || errorHandler.hasFatalError()) {
                 listFichError.add("Fichero erróneo: " + XML);
                 listError.add(errorHandler.getMessage());

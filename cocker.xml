@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='ISO-8859-15' standalone='no'?>
+
+<!DOCTYPE Interprete >
+
+
+<Interprete xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="iml.xsd">
+ <Nombre>
+  <NombreC>Joe Cocker</NombreC>
+  <Id>sdfryghuiu</Id>
+ </Nombre
+ <Nacionalidad>americano</Nacionalidad>
+ 
+ <Album tipo="nuevo">
+  <NombreA>when night comes</NombreA>
+  <Año>2000</Año>
+  <Cancion estilo="pop">
+    <NombreT>when night comes</NombreT>
+    Tema principal del disco
+    <Duracion>04:30</Duracion>
+  </Cancion>
+   <Cancion estilo="balada">
+    <NombreT>You can leave your hat on</NombreT>
+    nueve semanas y media
+    <Duracion>04:05</Duracion>
+    <Version>
+       <Nombre>
+         <NombreC>Bruce Springsteen</NombreC>
+         <Id>sdfryghuie</Id>
+       </Nombre>
+      <IML>springsteen.xml</IML>
+    </Version>
+  </Cancion>
+  <Cancion estilo="rock">
+    central
+    <NombreT>with a little help of my friends</NombreT>
+    <Duracion>07:00</Duracion>
+  </Cancion>
+   <Cancion estilo="rock">
+    <NombreT>Downtown</NombreT>
+    <Duracion>04:17</Duracion>
+    centro
+  </Cancion>
+ </Album>
+ 
+</Interprete>

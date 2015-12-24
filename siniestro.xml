@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='ISO-8859-15' standalone='no'?>
+
+<!DOCTYPE Interprete >
+
+
+<Interprete xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="iml.xsd">
+ <Nombre>
+  <NombreG>Siniestro Total</NombreG>
+  <Id>sdfryghuii</Id>
+ </Nombre>
+ <Nacionalidad>español</Nacionalidad>
+ 
+ <Album tipo="mixto">
+  <NombreA>¿Cuándo se come aquí?</NombreA>
+  <Año>2000</Año>
+  <Cancion estilo="pop">
+    <NombreT>Ponte en mi lugar</NombreT>
+    como yo en el tuyo
+    <Duracion>04:45</Duracion>
+  </Cancion>
+   <Cancion estilo="balada">
+    <NombreT>El cobrador loco</NombreT>
+    como todos
+    <Duracion>04:15</Duracion>
+    <Version>
+       <Nombre>
+         <NombreC>Luis Eduardo Aute</NombreC>
+         <Id>sdfryghuau</Id>
+       </Nombre>
+      <IML>aute.xml</IML>
+    </Version>
+  </Cancion>
+  <Cancion estilo="rock">
+    Exagerado
+    <NombreT>Nocilla, ¡qué merendilla!</NombreT>
+    <Duracion>07:11</Duracion>
+  </Cancion>
+   <Cancion estilo="rock">
+    <NombreT>Ayatollah!</NombreT>
+    <Duracion>04:37</Duracion>
+    sin rimas
+  </Cancion>
+ </Album>
+ 
+ <Album tipo="nuevo" temas="5">
+  <NombreA>Menos mal que nos queda Portugal</NombreA>
+  <Año>2001</Año>
+  <Cancion estilo="balada">
+    <NombreT>Que corra la nicotina</NombreT>
+    pasado de moda
+    <Duracion>05:02</Duracion>
+  </Cancion>
+   <Cancion estilo="rock">
+    <NombreT>Señor, ilumina mi corazón</NombreT>
+    con energías renovables
+    <Duracion>04:37</Duracion>
+  </Cancion>
+  <Cancion estilo="balada">
+    siempre
+    <NombreT>Oh, qué raro soy</NombreT>
+    <Duracion>03:56</Duracion>
+  </Cancion>
+   <Cancion estilo="balada">
+    <NombreT>Si yo canto</NombreT>
+    <Duracion>04:57</Duracion>
+    es por ti
+  </Cancion>
+   <Cancion estilo="pop">
+    <NombreT>La matanza de taxis</NombreT>
+    <Duracion>03:55</Duracion>
+    por caros
+   </Cancion>
+ </Album>
+ 
+ <Album tipo="nuevo">
+  <NombreA>Bailaré sobre tu tumba</NombreA>
+  <Año>2002</Año>
+  <Cancion estilo="balada">
+    <NombreT>Bailaré sobre tu tumba</NombreT>
+    descalzo
+    <Duracion>04:07</Duracion>
+  </Cancion>
+   <Cancion estilo="rock">
+    <NombreT>Al final</NombreT>
+    todo se acaba
+    <Duracion>03:40</Duracion>
+  </Cancion>
+  <Cancion estilo="balada">
+    en la playa
+    <NombreT>Rock en Samil</NombreT>
+    <Duracion>04:27</Duracion>
+  </Cancion>
+   <Cancion estilo="pop">
+    <NombreT>Viene el verano</NombreT>
+    <Duracion>05:35</Duracion>
+    y el calor
+  </Cancion>
+ </Album>
+ 
+ <Album tipo="nuevo" temas="4">
+  <NombreA>Ante todo mucha calma</NombreA>
+  <Año>2003</Año>
+  <Cancion estilo="balada">
+    <NombreT>Todo por la napia</NombreT>
+    grande
+    <Duracion>04:56</Duracion>
+  </Cancion>
+   <Cancion estilo="rock">
+    <NombreT>De hoy no pasa</NombreT>
+    nada
+    <Duracion>03:51</Duracion>
+  </Cancion>
+  <Cancion estilo="pop">
+    adonde?
+    <NombreT>Vamos muy bien</NombreT>
+    <Duracion>04:30</Duracion>
+  </Cancion>
+   <Cancion estilo="rock">
+    <NombreT>Somos Siniestro Total</NombreT>
+    <Duracion>03:44</Duracion>
+    me lo creo
+  </Cancion>
+ </Album>
+ 
+ <Album tipo="recopilatorio">
+  <NombreA>De hoy no pasa</NombreA>
+  <Año>2004</Año>
+  <Cancion estilo="balada">
+    <NombreT>Quiero bailar rock and roll</NombreT>
+    toda la noche
+    <Duracion>06:20</Duracion>
+    <Version>
+      <Nombre>
+         <NombreG>Mina</NombreG>
+         <Id>sdfryghuio</Id>
+      </Nombre>
+      <IML>mina.xml</IML>
+    </Version>
+  </Cancion>
+   <Cancion estilo="rock">
+    <NombreT>Diez escala drinker</NombreT>
+    máxima
+    <Duracion>05:05</Duracion>
+  </Cancion>
+  <Cancion estilo="balada">
+    y apúntelo
+    <NombreT>Diga qué le debo</NombreT>
+    <Duracion>06:54</Duracion>
+  </Cancion>
+   <Cancion estilo="pop">
+    <NombreT>Yo ya fui a Cangas del Morrazo</NombreT>
+    <Duracion>05:04</Duracion>
+    para nada
+  </Cancion>
+ </Album>
+ 
+</Interprete>

@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='ISO-8859-15' standalone='no'?>
 
-<!DOCTYPE Interprete SYSTEM "C:\Users\ruth_\Desktop\Proyectos\ProcessIML\iml.dtd">
+<!DOCTYPE Interprete >
 
-<Interprete>
+<Interprete xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:noNamespaceSchemaLocation="iml.xsd">
 	<Nombre>
 		<NombreC>Imagine Dragons</NombreC>
 		<Id>ImDr</Id>
 	</Nombre>
-	<Nacionalidad>Americano</Nacionalidad>
+	<Nacionalidad>americano</Nacionalidad>
 	<Album tipo="nuevo" temas="3">
 
 		<NombreA>Smoke + Mirrors</NombreA>

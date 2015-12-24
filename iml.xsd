@@ -69,8 +69,7 @@
                 <xsd:element name="Id">
                     <xsd:simpleType>
                         <xsd:restriction base="xsd:string">
-                            <xsd:maxLength value="10"/>
-                            <xsd:minLength value="10"/>
+                            <xsd:length value="10"/>
                         </xsd:restriction>
                     </xsd:simpleType>
                 </xsd:element>

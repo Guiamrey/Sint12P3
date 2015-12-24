@@ -1,134 +1,134 @@
 <?xml version='1.0' encoding='ISO-8859-15' standalone='no'?>
 
-<!DOCTYPE Interprete
+<!DOCTYPE Interprete>
 
 
 <Interprete xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="iml.xsd">
  <Nombre>
-  <NombreC>Joaquín Sabina</NombreC>
-  <Id>sdfryghuia</Id>
+  <NombreC>Bruce Springsteen</NombreC>
+  <Id>sdfryghuie</Id>
  </Nombre>
- <Nacionalidad>español</Nacionalidad>
+ <Nacionalidad>americano</Nacionalidad>
  
  <Album tipo="nuevo">
-  <NombreA>19 días y 500 noches</NombreA>
-  <Año>2002</Año>
+  <NombreA>Born to run</NombreA>
+  <Año>2000</Año>
   <Cancion estilo="pop">
-    <NombreT>19 días y 500 noches</NombreT>
-    Tema principal del disco
+    <NombreT>Thunder Road</NombreT>
+    wind blow back
     <Duracion>04:45</Duracion>
   </Cancion>
    <Cancion estilo="balada">
-    <NombreT>Una Canción Para La Magdalena</NombreT>
-    Sobre la Magdalena?
+    <NombreT>Night</NombreT>
+    Good
     <Duracion>04:15</Duracion>
     <Version>
        <Nombre>
-         <NombreC>Bruce Springsteen</NombreC>
+         <NombreC>Joaquín Sabina</NombreC>
          <Id>sdfryghuie</Id>
        </Nombre>
-      <IML>springsteen.xml</IML>
+      <IML>sabina.xml</IML>
     </Version>
   </Cancion>
   <Cancion estilo="rock">
-    Y alguno más
-    <NombreT>A Mis Cuarenta y Diez</NombreT>
+    we all
+    <NombreT>Born to run</NombreT>
     <Duracion>07:11</Duracion>
   </Cancion>
    <Cancion estilo="rock">
-    <NombreT>Cerrado Por Derribo</NombreT>
+    <NombreT>She is the one</NombreT>
     <Duracion>04:37</Duracion>
-    Para siempre
+    the only one
   </Cancion>
  </Album>
  
  <Album tipo="nuevo" temas="5">
-  <NombreA>Física y Química</NombreA>
+  <NombreA>The river</NombreA>
   <Año>2001</Año>
   <Cancion estilo="balada">
-    <NombreT>Y nos dieron las diez</NombreT>
-    Y las once
+    <NombreT>Jackson Cage</NombreT>
+    This is
     <Duracion>05:02</Duracion>
   </Cancion>
    <Cancion estilo="rock">
-    <NombreT>La del pirata cojo</NombreT>
-    Con pata de palo
+    <NombreT>Hungry Heart</NombreT>
+    And thirsty
     <Duracion>04:37</Duracion>
   </Cancion>
   <Cancion estilo="balada">
-    Esta es
-    <NombreT>La canción de las noches perdidas</NombreT>
+    main song
+    <NombreT>The river</NombreT>
     <Duracion>03:56</Duracion>
   </Cancion>
-   <Cancion estilo="balada">
-    <NombreT>Peor para el sol</NombreT>
+   <Cancion estilo="country">
+    <NombreT>Point Blank</NombreT>
     <Duracion>04:57</Duracion>
-    Que se mete en a cama a dormir
+    good point
   </Cancion>
    <Cancion estilo="pop">
-    <NombreT>Pastillas para no soñar</NombreT>
+    <NombreT>Out in the street</NombreT>
     <Duracion>03:55</Duracion>
-    No hay
+    You are
    </Cancion>
  </Album>
  
  <Album tipo="recopilatorio">
-  <NombreA>Todos hablan de ti</NombreA>
-  <Año>2004</Año>
+  <NombreA>Greatest Hits</NombreA>
+  <Año>2002</Año>
   <Cancion estilo="balada">
-    <NombreT>Pongamos que hablo de Madrid</NombreT>
-    Al cielo
+    <NombreT>Badlands</NombreT>
+    teh best
     <Duracion>04:07</Duracion>
   </Cancion>
    <Cancion estilo="rock">
-    <NombreT>Eh, Sabina</NombreT>
-    Tú sí que sabes
+    <NombreT>My Hometown</NombreT>
+    This is
     <Duracion>03:40</Duracion>
   </Cancion>
   <Cancion estilo="balada">
-    Quiero mudarme hace años
-    <NombreT>Calle Melancolía</NombreT>
+    These are
+    <NombreT>Better Days</NombreT>
     <Duracion>04:27</Duracion>
   </Cancion>
    <Cancion estilo="pop">
-    <NombreT>Juana la Loca</NombreT>
+    <NombreT>Born in the USA</NombreT>
     <Duracion>05:35</Duracion>
-    Y Felipe el Hermoso
+    I was
   </Cancion>
  </Album>
  
  <Album tipo="mixto" temas="4">
-  <NombreA>Diario de un peatón</NombreA>
+  <NombreA>Wrecking Ball</NombreA>
   <Año>2003</Año>
   <Cancion estilo="balada">
-    <NombreT>La canción más hermosa del mundo</NombreT>
-    Con Pablo Milanés
+    <NombreT>Wrecking Ball</NombreT>
+    ruinas
     <Duracion>04:56</Duracion>
   </Cancion>
    <Cancion estilo="rock">
-    <NombreT>Doble vida</NombreT>
-    Y triple a veces
+    <NombreT>We are alive</NombreT>
+    always
     <Duracion>03:51</Duracion>
   </Cancion>
   <Cancion estilo="pop">
-    Nosotros también
-    <NombreT>Semos diferentes</NombreT>
+    this is the
+    <NombreT>American Land</NombreT>
     <Duracion>04:30</Duracion>
   </Cancion>
    <Cancion estilo="rock">
-    <NombreT>Cuando me hablan del destino</NombreT>
+    <NombreT>Easy money</NombreT>
     <Duracion>03:44</Duracion>
-    Me pongo furioso
+    we got
   </Cancion>
  </Album>
  
  <Album tipo="nuevo">
-  <NombreA>Nos sobran los motivos</NombreA>
-  <Año>2000</Año>
+  <NombreA>Nebraska</NombreA>
+  <Año>2004</Año>
   <Cancion estilo="balada">
-    <NombreT>Que se llama Soledad</NombreT>
-    Y seguirá llamándose
+    <NombreT>Nebraska</NombreT>
+    cold
     <Duracion>06:20</Duracion>
     <Version>
       <Nombre>
@@ -139,19 +139,26 @@
     </Version>
   </Cancion>
    <Cancion estilo="rock">
-    <NombreT>Contigo</NombreT>
-    Y sin ti
+    <NombreT>Atlantic City</NombreT>
+    money
     <Duracion>05:05</Duracion>
   </Cancion>
   <Cancion estilo="balada">
-    Así estoy yo sin ti
-    <NombreT>¿Quién me ha robado el mes de abril?</NombreT>
+    military
+    <NombreT>State Trooper</NombreT>
     <Duracion>06:54</Duracion>
   </Cancion>
    <Cancion estilo="pop">
-    <NombreT>Conductores suicidas</NombreT>
+    <NombreT>Reason to Believe</NombreT>
     <Duracion>05:04</Duracion>
-    Todos somos un poco así
+    in all
+    <Version>
+      <Nombre>
+         <NombreC>Joe Cocker</NombreC>
+         <Id>sdfryghuiu</Id>
+      </Nombre>
+      <IML>cocker.xml</IML>
+    </Version>
   </Cancion>
  </Album>
  

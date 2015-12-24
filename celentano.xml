@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-15' standalone='no'?>
+
+<!DOCTYPE Interprete>
+
+
+<Interprete  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="iml.xsd">
+ <Nombre>
+  <NombreC>Adriano Celentano</NombreC>
+  <Id>sdfryghuao</Id>
+ </Nombre>
+ <Nacionalidad>italiano</Nacionalidad>
+ 
+ <Album tipo="nuevo">
+  <NombreA>presto</NombreA>
+  <Año>2006</Año>
+  <Cancion>
+    <NombreT>presto</NombreT>
+    Tema principal del disco
+    <Duracion>04:10</Duracion>
+  </Cancion>
+   <Cancion estilo="balada">
+    <NombreT>per tuti</NombreT>
+    sabore
+    <Duracion>4:05</Duracion>
+  </Cancion>
+ </Album>
+ 
+</Interprete>

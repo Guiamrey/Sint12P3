@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='ISO-8859-15' standalone='no'?>
 
-<!DOCTYPE Interprete SYSTEM "iml.dtd">
-<Interprete>
+<!DOCTYPE Interprete>
+<Interprete xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="iml.xsd">
     <Nombre>
         <NombreC>Dani Martin</NombreC>
-        <Id>DMartin</Id>
+        <Id>DMdddartin</Id>
     </Nombre>
-    <Nacionalidad>Español</Nacionalidad>
+    <Nacionalidad>español</Nacionalidad>
     <Album tipo="nuevo" temas="3">
 
         <NombreA>Pequeño</NombreA><Año>2012</Año>

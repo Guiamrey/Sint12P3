@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-15' standalone='no'?>
+<!DOCTYPE Interprete >
+<Interprete xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="iml.xsd">
+
+
+    <Nombre>
+        <NombreC>Luis Eduardo Aute</NombreC>
+        <Id>sdfryghuau</Id>
+    </Nombre>
+
+
+    <Album tipo="nuevo">
+        <NombreA>al alba</NombreA>
+        <Año>2005</Año>
+        <Cancion estilo="pop">
+            <NombreT>al alba</NombreT>
+            Tema principal del disco
+            <Duracion>04:50</Duracion>
+        </Cancion>
+        <Cancion estilo="balada">
+            <NombreT>para siempre</NombreT>
+            y ms
+            <Duracion>03:05</Duracion>
+        </Cancion>
+    </Album>
+
+</Interprete>
