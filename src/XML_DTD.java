@@ -7,6 +7,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
@@ -64,22 +65,24 @@ public class XML_DTD {
     public static void processIML(String XML) {
       //  System.out.println(XML);
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance(); //
+        dbf.setNamespaceAware(true);
         dbf.setValidating(true); //
+        dbf.setAttribute( "http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
+        dbf.setAttribute( "http://java.sun.com/xml/jaxp/properties/schemaSource", "iml.xsd");
         DocumentBuilder db; //
         Document doc; //
         XML_DTD_ErrorHandler errorHandler = new XML_DTD_ErrorHandler();
         try {
             db = dbf.newDocumentBuilder(); //
             db.setErrorHandler(errorHandler); //
-            doc = db.parse(XML);
 
             SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = sf.newSchema(new File("iml.xsd"));
             Validator validator = schema.newValidator();
-            validator.validate(new DOMSource(doc));
-
+            validator.validate(new StreamSource(new File(XML)));
             System.out.println("DOCUMENTO VALIDO: "+XML);
 
+            doc = db.parse(XML);
             listDoc.add(doc);
             NodeList iml = doc.getElementsByTagName("IML");
             for (int i = 0; i < iml.getLength(); i++) {
@@ -97,6 +100,7 @@ public class XML_DTD {
                 listError.add("Error: " + e.toString());
                 listFichError.add("Fichero erróneo: " + XML);
             }
+            return;
         } catch (SAXException e) {
             System.out.println("DOCUMENTO INVALIDO: "+XML);
 
@@ -108,6 +112,7 @@ public class XML_DTD {
                 listError.add("Error: " + e.toString());
                 listFichError.add("Fichero erróneo: " + XML);
             }
+            return;
         } catch (IOException e) {
             if (errorHandler.hasError() || errorHandler.hasWarning() || errorHandler.hasFatalError()) {
                 listFichError.add("Fichero erróneo: " + XML);
@@ -117,6 +122,7 @@ public class XML_DTD {
                 listError.add("Error: " + e.getMessage());
                 listFichError.add("Fichero erróneo: " + XML);
             }
+            return;
         }
     }
 
