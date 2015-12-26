@@ -64,25 +64,31 @@ public class XML_DTD {
 
     public static void processIML(String XML) {
       //  System.out.println(XML);
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance(); //
-        dbf.setNamespaceAware(true);
-        dbf.setValidating(true); //
-        dbf.setAttribute( "http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
-        dbf.setAttribute( "http://java.sun.com/xml/jaxp/properties/schemaSource", "iml.xsd");
-        DocumentBuilder db; //
-        Document doc; //
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        dbf.setNamespaceAware(true); //<-----------
+        dbf.setValidating(true);  //<--------
+        dbf.setAttribute( "http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema"); //<--------
+        dbf.setAttribute( "http://java.sun.com/xml/jaxp/properties/schemaSource", "iml.xsd"); //<--------
+        DocumentBuilder db;
+        Document doc;
         XML_DTD_ErrorHandler errorHandler = new XML_DTD_ErrorHandler();
         try {
-            db = dbf.newDocumentBuilder(); //
-            db.setErrorHandler(errorHandler); //
+            db = dbf.newDocumentBuilder();
+            db.setErrorHandler(errorHandler);
 
-            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = sf.newSchema(new File("iml.xsd"));
-            Validator validator = schema.newValidator();
-            validator.validate(new StreamSource(new File(XML)));
+            doc = db.parse(new File(XML)); //2 //<--------
+
+
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI); //<--------
+            Schema schema = sf.newSchema(new File("iml.xsd")); //<--------
+            Validator validator = schema.newValidator(); //<--------
+
+            validator.validate(new DOMSource(doc)); //2 //<--------
+
+          //   validator.validate(new StreamSource(new File(XML))); // 1//<--------
             System.out.println("DOCUMENTO VALIDO: "+XML);
 
-            doc = db.parse(XML);
+          //  doc = db.parse(XML);// 1 //<--------
             listDoc.add(doc);
             NodeList iml = doc.getElementsByTagName("IML");
             for (int i = 0; i < iml.getLength(); i++) {
