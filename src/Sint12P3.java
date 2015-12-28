@@ -55,7 +55,6 @@ public class Sint12P3 extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         res.setContentType("text/html");
-        PrintWriter out = res.getWriter();
         String JSP = null;
         String Caducado = "";
         try {
@@ -70,8 +69,7 @@ public class Sint12P3 extends HttpServlet {
                     JSP = "/Inicio.jsp";
                     req.setAttribute("errorBean", error);
                     session.setAttribute("Caducado", Caducado);
-                    delegateControl(req, res, session, JSP);
-                    // Inicio(out, req, res, session);
+                    ControltoJSP(req, res, session, JSP);
                 } else {
                     Enumeration param = req.getParameterNames();
                     while (param.hasMoreElements()) {
@@ -84,11 +82,9 @@ public class Sint12P3 extends HttpServlet {
                         if (((String) session.getAttribute("consulta")).equals("1")) {
                             result.setData(getCantantes());
                             JSP = "/etapa11.jsp";
-                            // etapa11(out, req, res, session);
                         } else {
                             result.setData(getAnhoAlbumes());
                             JSP = "/etapa12.jsp";
-                            // etapa12(out, req, res, session);
                         }
                     } else {
                         if (etapa.charAt(0) == '0') { //sin etapa anterior
@@ -97,13 +93,11 @@ public class Sint12P3 extends HttpServlet {
                                     String interprete = (String) session.getAttribute("interprete");
                                     result.setData(getAlbumCantante(interprete));
                                     JSP = "/etapa21.jsp";
-                                    //  etapa21(out, req, res, session);
                                 } else {
                                     String interprete = (String) session.getAttribute("interprete");
                                     String album1 = (String) session.getAttribute("album1");
                                     result.setData(getCancionesCantante(interprete, album1));
                                     JSP = "/resultado1.jsp";
-                                    //resultado1(out, req, res, session);
                                 }
                             } else {//segunda consulta
                                 String anhio = (String) session.getAttribute("anhio");
@@ -113,17 +107,14 @@ public class Sint12P3 extends HttpServlet {
                                     case '1':
                                         result.setData(getAlbumesPorAnho(anhio));
                                         JSP = "/etapa22.jsp";
-                                        //etapa22(out, req, res, session);
                                         break;
                                     case '2':
                                         result.setData(getEstilo(anhio, album2));
                                         JSP = "/etapa32.jsp";
-                                        //etapa32(out, req, res, session);
                                         break;
                                     case '3':
                                         result.setData(getCancionesEstilo(anhio, album2, estilo));
                                         JSP = "/resultado2.jsp";
-                                        // resultado2(out, req, res, session);
                                         break;
                                 }
                             }
@@ -132,12 +123,10 @@ public class Sint12P3 extends HttpServlet {
                                 if (etapa.charAt(1) == '1') {  //comprobar etapa
                                     result.setData(getCantantes());
                                     JSP = "/etapa11.jsp";
-                                    //etapa11(out, req, res, session);
                                 } else {
                                     String interprete = (String) session.getAttribute("interprete");
                                     result.setData(getAlbumCantante(interprete));
                                     JSP = "/etapa21.jsp";
-                                    //etapa21(out, req, res, session);
                                 }
                             } else {//segunda consulta
                                 String anhio = (String) session.getAttribute("anhio");
@@ -146,24 +135,21 @@ public class Sint12P3 extends HttpServlet {
                                     case '1':
                                         result.setData(getAnhoAlbumes());
                                         JSP = "/etapa12.jsp";
-                                        // etapa12(out, req, res, session);
                                         break;
                                     case '2':
                                         result.setData(getAlbumesPorAnho(anhio));
                                         JSP = "/etapa22.jsp";
-                                        // etapa22(out, req, res, session);
                                         break;
                                     case '3':
                                         result.setData(getEstilo(anhio, album2));
                                         JSP = "/etapa32.jsp";
-                                        // etapa32(out, req, res, session);
                                         break;
                                 }
                             }
                         }
                     }
                     req.setAttribute("resultBean", result);
-                    delegateControl(req, res, session, JSP);
+                    ControltoJSP(req, res, session, JSP);
                 }
             } else {
                 session = req.getSession(true);
@@ -174,8 +160,7 @@ public class Sint12P3 extends HttpServlet {
                 JSP = "/Inicio.jsp";
                 req.setAttribute("errorBean", error);
                 session.setAttribute("Caducado", Caducado);
-                delegateControl(req, res, session, JSP);
-                //Inicio(out, req, res, session);
+                ControltoJSP(req, res, session, JSP);
             }
         } catch (Throwable e) {
             session = req.getSession(true);
@@ -185,267 +170,17 @@ public class Sint12P3 extends HttpServlet {
             error.setFichError(listFichError);
             JSP = "/Inicio.jsp";
             req.setAttribute("errorBean", error);
-            Caducado ="La sesión ha caducado";
+            Caducado = "La sesión ha caducado";
             session.setAttribute("Caducado", Caducado);
-            delegateControl(req, res, session, JSP);
-            // Inicio(out, req, res, session);
+            ControltoJSP(req, res, session, JSP);
         }
     }
 
-    /*****************************************************************************************************************************************/
-    public void Inicio(PrintWriter out, HttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException, ServletException {
-        req.setCharacterEncoding("UTF-8");
-        imprimirInicio(out);
-        out.println("<div class='error'>");
-        out.println("<b>Errores encontrados</b>: <br>");
-        if (listError.size() == 0) {
-            out.println("Ningún error encontrado");
-        } else {
-            for (int i = 0; i < listError.size(); i++) {
-                out.println((i + 1) + ". " + listError.get(i) + "<br>");
-            }
-        }
-        out.println("<br><b>Ficheros erróneos</b>: <br>");
-        if (listFichError.size() == 0) {
-            out.println("Ningún fichero erróneo encontrado");
-        } else {
-            for (int i = 0; i < listFichError.size(); i++) {
-                out.println((i + 1) + ". " + listFichError.get(i) + "<br>");
-            }
-        }
-        out.println("</div>");
-        out.println("<h3>Selecciona la consulta que desea hacer</h3>");
-        out.println("<form method='POST' action='?etapa_10' >");
-        out.println("<input type='hidden' name='etapa' value='10'>");
-        out.println("<input type='radio' value='1' checked='' name='consulta'>Lista de canciones");
-        out.println("<br>");
-        out.println("<input type='radio' value='2' name='consulta'>Número de canciones");
-        out.println("<br>");
-        out.println("<p>");
-        out.println("<input type='submit' value='Enviar'>");
-        out.println("<p>");
-        out.println("</form>");
-        imprimirFinal(out);
-    }
-
-    public void etapa11(PrintWriter out, HttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException, ServletException {
-        req.setCharacterEncoding("UTF-8");
-        ArrayList<String> list = getCantantes();
-        Collections.sort(list);
-        imprimirInicio(out);
-        out.println("<h4>Seleccione el inteprete deseado:</h4>");
-        out.println("<form method='POST' action='?etapa_11&consultainicial_Cantantes' >");
-        out.println("<input type='hidden' name='etapa' value='011'>");
-        for (int i = 0; i < list.size(); i++) {
-            out.println("<input type='radio' checked='' value='" + list.get(i) + "' name='interprete'>" + list.get(i) + "");
-            out.println("<br>");
-        }
-        out.println("<input type='radio' value='Todos' name='interprete'>Todos");
-        out.println("<br>");
-        out.println("<p>");
-        out.println("<input type='submit' value='Enviar' >");
-        out.println("<br>");
-        out.println("<input type='submit' onclick='form.etapa.value=0' value='Atrás'>");
-        out.println("<input type='submit' onclick='form.etapa.value=0' value='Inicio'>");
-        out.println("</form>");
-        imprimirFinal(out);
-    }
-
-    public void etapa21(PrintWriter out, HttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException, ServletException {
-        req.setCharacterEncoding("UTF-8");
-        String interprete = (String) session.getAttribute("interprete");
-        ArrayList<String> list = getAlbumCantante(interprete);
-        imprimirInicio(out);
-        out.println("<h2>Lista de canciones</h2> <h3>Cantante: " + interprete + "</h3>");
-        out.println("<h4>Seleccione el álbum deseado:</h4>");
-        out.println("<form method='POST  ' action='?etapa_21&consultainicial_Cantantes&Cantante_" + interprete + "' >");
-        out.println("<input type='hidden' name='etapa' value='021'>");
-        if (list.isEmpty()) {
-            out.println("Su consulta no ha generado ningún resultado <br>(El artista seleccionado no tiene ningún álbum)<h4>:(</h4>");
-        } else {
-            for (int i = 0; i < list.size(); i++) {
-                out.println("<input type='radio' checked='' value='" + list.get(i) + "' name='album1'>" + list.get(i) + "");
-                out.println("<br>");
-            }
-            out.println("<input type='radio' value='Todos' name='album1'>Todos ");
-            out.println("<br>");
-            out.println("<p>");
-            out.println("<input type='submit' value='Enviar' >");
-        }
-        out.println("<br>");
-        out.println("<input type='submit' onclick='form.etapa.value=111' value='Atrás'>");
-        out.println("<input type='submit' onclick='form.etapa.value=0' value='Inicio'>");
-        out.println("</form>");
-        imprimirFinal(out);
-    }
-
-    public void resultado1(PrintWriter out, HttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException, ServletException {
-        req.setCharacterEncoding("UTF-8");
-        String interprete = (String) session.getAttribute("interprete");
-        String album1 = (String) session.getAttribute("album1");
-        ArrayList<String> list = getCancionesCantante(interprete, album1);
-        Collections.sort(list);
-        imprimirInicio(out);
-        out.println("<h2>Lista de canciones</h2><h3>Cantante: " + interprete + "<br>Álbum: " + album1 + "</h3>");
-        out.println("<h4>Resultado de su consulta:</h4>");
-        out.println("<br>");
-        out.println("<ul>");
-        if (list.isEmpty()) {
-            out.println("Su consulta no ha generado ningún resultado <h4>:(</h4>");
-        } else {
-            for (int i = 0; i < list.size(); i++) {
-                out.println("<il>" + list.get(i) + "</li>");
-                out.println("<br>");
-            }
-        }
-        out.println("</ul>");
-        out.println("<br>");
-        out.println("<form method='POST' action='?etapa_31'>");
-        out.println("<input type='hidden' name='etapa' value='031'>");
-        out.println("<p>");
-        out.println("<input type='submit' onclick='form.etapa.value=121' value='Atrás'>");
-        out.println("<input type='submit' onclick='form.etapa.value=0' value='Inicio'>");
-        out.println("</form>");
-        imprimirFinal(out);
-    }
-
-    /*********************************************************************************************
-     * **********************************************************************************************
-     ************************************************************************************************/
-    public void etapa12(PrintWriter out, HttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException, ServletException {
-        ArrayList<String> list = getAnhoAlbumes();
-        Collections.sort(list);
-        imprimirInicio(out);
-        out.println("<h3>Lista de canciones por estilo</h3>");
-        out.println("<h4>Seleccione el año deseado:</h4>");
-        out.println("<form method='POST' action='?etapa_12&consultainicial_Canciones' >");
-        out.println("<input type='hidden' name='etapa' value='012'>");
-        if (list.isEmpty()) {
-            out.println("Su consulta no ha generado ningún resultado <h4>:(</h4>");
-        } else {
-            for (int i = 0; i < list.size(); i++) {
-                out.println("<input type='radio' checked='' value='" + list.get(i) + "' name='anhio'>" + list.get(i) + "");
-                out.println("<br>");
-            }
-            out.println("<input type='radio' value='Todos' name='anhio'>Todos");
-            out.println("<br>");
-            out.println("<p>");
-            out.println("<input type='submit' value='Enviar' >");
-        }
-        out.println("<br>");
-        out.println("<input type='submit' onclick='form.etapa.value=0' value='Atrás'>");
-        out.println("<input type='submit' onclick='form.etapa.value=0' value='Inicio'>");
-        out.println("</form>");
-        imprimirFinal(out);
-    }
-
-    public void etapa22(PrintWriter out, HttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException, ServletException {
-        req.setCharacterEncoding("UTF-8");
-        String anhio = (String) session.getAttribute("anhio");
-        ArrayList<String> list = getAlbumesPorAnho(anhio);
-        imprimirInicio(out);
-        out.println("<h2>Número de canciones</h2><h3>Año: " + anhio + "</h3>");
-        out.println("<h4>Seleccione el álbum deseado:</h4>");
-        out.println("<form method='POST' action='?etapa_22&consultainicial_Canciones&anio_" + anhio + "' >");
-        out.println("<input type='hidden' name='etapa' value='022'>");
-        if (list.isEmpty()) {
-            out.println("Su consulta no ha generado ningún resultado <h4>:(</h4>");
-        } else {
-            for (int i = 0; i < list.size(); i++) {
-                out.println("<input type='radio' checked='' value='" + list.get(i) + "' name='album2'>" + list.get(i) + "");
-                out.println("<br>");
-            }
-            out.println("<input type='radio' value='Todos' name='album2'>Todos");
-            out.println("<br>");
-            out.println("<p>");
-            out.println("<input type='submit' value='Enviar' >");
-        }
-        out.println("<br>");
-        out.println("<input type='submit' onclick='form.etapa.value=112' value='Atrás'>");
-        out.println("<input type='submit' onclick='form.etapa.value=0' value='Inicio'>");
-        out.println("</form>");
-        imprimirFinal(out);
-    }
-
-    public void etapa32(PrintWriter out, HttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException, ServletException {
-        req.setCharacterEncoding("UTF-8");
-        String anhio = (String) session.getAttribute("anhio");
-        String album2 = (String) session.getAttribute("album2");
-
-        ArrayList<String> list = getEstilo(anhio, album2);
-        imprimirInicio(out);
-        out.println("<h2>Número de canciones</h2><h3>Año: " + anhio + "<br>Álbum: " + album2 + "</h3>");
-        out.println("<h4>Seleccione el estilo deseado:</h4>");
-        out.println("<form method='POST' action='?etapa_32&consultainicial_Canciones&anio_" + anhio + "album_" + album2 + "' >");
-        out.println("<input type='hidden' name='etapa' value='032'>");
-        if (list.isEmpty()) {
-            out.println("Su consulta no ha generado ningún resultado <h4>:(</h4>");
-        } else {
-            for (int i = 0; i < list.size(); i++) {
-                out.println("<input type='radio' checked='' value='" + list.get(i) + "' name='estilo'>" + list.get(i) + "");
-                out.println("<br>");
-            }
-            out.println("<input type='radio' value='Todos' name='estilo'>Todos");
-            out.println("<br>");
-            out.println("<p>");
-            out.println("<input type='submit' value='Enviar' >");
-        }
-        out.println("<br>");
-        out.println("<input type='submit' onclick='form.etapa.value=122' value='Atrás'>");
-        out.println("<input type='submit' onclick='form.etapa.value=0' value='Inicio'>");
-        out.println("</form>");
-        imprimirFinal(out);
-    }
-
-    public void resultado2(PrintWriter out, HttpServletRequest req, HttpServletResponse res, HttpSession session) throws IOException, ServletException {
-        req.setCharacterEncoding("UTF-8");
-        String anhio = (String) session.getAttribute("anhio");
-        String album2 = (String) session.getAttribute("album2");
-        String estilo = (String) session.getAttribute("estilo");
-
-        ArrayList<String> list = getCancionesEstilo(anhio, album2, estilo);
-        imprimirInicio(out);
-        out.println("<h2>Número de canciones</h2><h3>Año: " + anhio + "<br>Álbum: " + album2 + "<br>Estilo: " + estilo + "</h3>");
-        out.println("<h4>Resultado de su consulta:</h4>");
-        out.println("<br>");
-        out.println("El número de canciones es: " + list.size());
-        out.println("<form method='POST' action='?etapa_42'>");
-        out.println("<input type='hidden' name='etapa' value='042'>");
-        out.println("<p>");
-        out.println("<input type='submit' onclick='form.etapa.value=132' value='Atrás'>");
-        out.println("<input type='submit' onclick='form.etapa.value=0' value='Inicio'>");
-        out.println("</form>");
-        imprimirFinal(out);
-    }
-
-    public void imprimirInicio(PrintWriter out) {
-        out.println("<html lang='es'>");
-        out.println("<head>");
-        out.println("<link rel='stylesheet' href='iml.css'>");
-        out.println("<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>");
-        out.println("<title>Consulta músical</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<header>");
-        out.println("<h1>Servicio web de consulta músical</h1>");
-        out.println("</header>");
-        out.println("<div>");
-    }
-
-    public void imprimirFinal(PrintWriter out) {
-        out.println("</div>");
-        out.println("<footer>Creado por Ruth Guimarey Docampo<br>Servicios de Internet. Práctica 2</footer>");
-        out.println("</body>");
-        out.println("</html>");
-    }
-
-
-    public void delegateControl(HttpServletRequest req, HttpServletResponse res, HttpSession session, String jsp) throws ServletException, IOException {
+    public void ControltoJSP(HttpServletRequest req, HttpServletResponse res, HttpSession session, String jsp) throws ServletException, IOException {
         ServletContext cont = getServletContext();
         RequestDispatcher reqdis = cont.getRequestDispatcher(jsp);
         reqdis.forward(req, res);
     }
-
 
     /*************************************************************************************************************************************
      * **********************************************************************************************************************************
@@ -453,24 +188,23 @@ public class Sint12P3 extends HttpServlet {
 
     public static void processIML(String XML) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setNamespaceAware(true); //<-----------
-        dbf.setValidating(true);  //<--------
-        dbf.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema"); //<--------
-        dbf.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaSource", "iml.xsd"); //<--------
+        dbf.setNamespaceAware(true);
+        dbf.setValidating(true);
+        dbf.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
+        dbf.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaSource", "iml.xsd");
         DocumentBuilder db;
         Document doc;
         XML_DTD_ErrorHandler errorHandler = new XML_DTD_ErrorHandler();
         try {
             db = dbf.newDocumentBuilder();
             db.setErrorHandler(errorHandler);
-            // doc = db.parse(new File(XML)); //2 //<--------
-            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI); //<--------
-            Schema schema = sf.newSchema(new File("iml.xsd")); //<--------
-            Validator validator = schema.newValidator(); //<--------
-            // validator.validate(new DOMSource(doc)); //2 //<--------
-            validator.validate(new StreamSource(new File(XML))); // 1//<--------
-            // System.out.println("DOCUMENTO VALIDO: " + XML);
-            doc = db.parse(XML);// 1 //<--------
+            // doc = db.parse(new File(XML)); //2
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = sf.newSchema(new File("iml.xsd"));
+            Validator validator = schema.newValidator();
+            // validator.validate(new DOMSource(doc)); //2
+            validator.validate(new StreamSource(new File(XML))); // 1
+            doc = db.parse(XML);// 1
             listDoc.add(doc);
             NodeList iml = doc.getElementsByTagName("IML");
             for (int i = 0; i < iml.getLength(); i++) {
@@ -494,7 +228,7 @@ public class Sint12P3 extends HttpServlet {
                 listError.add(errorHandler.getMessage());
                 errorHandler.clear();
             } else {
-                listError.add("Error: " + e.toString());
+                listError.add("Error: " + e.getLocalizedMessage());
                 listFichError.add("Fichero erróneo: " + XML);
             }
         } catch (IOException e) {
@@ -721,9 +455,7 @@ public class Sint12P3 extends HttpServlet {
                             String Estilo = attributes.item(j).getTextContent();
                             if (Estilo.equals(estilo) || estilo.equalsIgnoreCase("todos")) {
                                 NodeList childNodes = canciones.item(a).getChildNodes(); //ELEMENTOS DE LAS CANCIONES QUE COINCIDEN CON LOS PARAMETROS SELECCIONADOS
-                                ArrayList<String> descrp = new ArrayList<String>();
                                 String nombreC = null;
-                                String duracion = null;
                                 for (int k = 0; k < childNodes.getLength(); k++) {
                                     if (childNodes.item(k).getNodeName().equals("NombreT")) { //SACAR EL NOMBRE DE LA CANCION
                                         nombreC = childNodes.item(k).getTextContent();

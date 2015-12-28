@@ -19,7 +19,8 @@
 </header>
 <div>
     <h2>Lista de canciones</h2>
-    <h3>Cantante: <%= session.getAttribute("interprete")%><br>Álbum: <%= session.getAttribute("album1")%></h3>
+    <h3>Cantante: <%= session.getAttribute("interprete")%><br>Álbum: <%= session.getAttribute("album1")%>
+    </h3>
     <h4>Resultado de su consulta:</h4><br>
 
     <c:choose>

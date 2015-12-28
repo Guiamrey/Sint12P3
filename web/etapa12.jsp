@@ -23,20 +23,21 @@
     <form method='POST' action='?etapa_12&consultainicial_Canciones'>
         <input type='hidden' name='etapa' value='012'>
         <c:choose>
-            <c:when test="${empty resultBean.data}">
-                Su consulta no ha generado ningún resultado
-                <h4>:(</h4>
-            </c:when>
-            <c:otherwise>
-                <c:forEach items="${resultBean.data}" var="datos">
-                    <input type='radio' value='<c:out value="${datos}"></c:out>' name='anhio'><c:out value="${datos}"></c:out>
-                    <br>
-                </c:forEach>
-                <input type='radio' value='Todos' checked='' name='anhio'>Todos<br>
+        <c:when test="${empty resultBean.data}">
+            Su consulta no ha generado ningún resultado
+            <h4>:(</h4>
+        </c:when>
+        <c:otherwise>
+        <c:forEach items="${resultBean.data}" var="datos">
+            <input type='radio' value='<c:out value="${datos}"></c:out>' name='anhio'><c:out value="${datos}"></c:out>
+            <br>
+        </c:forEach>
+        <input type='radio' value='Todos' checked='' name='anhio'>Todos<br>
+        <p><input type='submit' value='Enviar'>
+
             </c:otherwise>
-        </c:choose>
-        <p><input type='submit' value='Enviar'><br>
-            <input type='submit' onclick='form.etapa.value=0' value='Atrás'>
+            </c:choose>
+            <br><input type='submit' onclick='form.etapa.value=0' value='Atrás'>
             <input type='submit' onclick='form.etapa.value=0' value='Inicio'>
         </p>
     </form>

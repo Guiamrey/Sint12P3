@@ -16,7 +16,8 @@
         <input type='hidden' name='etapa' value='011'>
 
         <c:forEach items="${resultBean.data}" var="datos">
-            <input type='radio' value='<c:out value="${datos}"></c:out>' name='interprete'><c:out value="${datos}"></c:out>
+            <input type='radio' value='<c:out value="${datos}"></c:out>' name='interprete'><c:out
+                value="${datos}"></c:out>
             <br>
         </c:forEach>
         <input type='radio' value='Todos' checked='' name='interprete'>Todos<br>

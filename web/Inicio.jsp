@@ -28,7 +28,8 @@
         </c:if>
 
     </div>
-    <span class="caducado"><h4><%=session.getAttribute("Caducado")%></h4></span>
+    <span class="caducado"><h4><%=session.getAttribute("Caducado")%>
+    </h4></span>
     <h3>Selecciona la consulta que desea hacer</h3>
     <form method='POST' action='?etapa_10'>
         <input type='hidden' name='etapa' value='10'>
