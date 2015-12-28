@@ -56,78 +56,139 @@ public class Sint12P3 extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         res.setContentType("text/html");
         PrintWriter out = res.getWriter();
+        String JSP = null;
+        String Caducado = "";
         try {
             if (req.getParameter("etapa") != null) {
                 String etapa = req.getParameter("etapa");
                 if (etapa.equals("0")) {
                     session = req.getSession(true);
                     session.setMaxInactiveInterval(20);
-                    Inicio(out, req, res, session);
+                    Error error = new Error();
+                    error.setErrores(listError);
+                    error.setFichError(listFichError);
+                    JSP = "/Inicio.jsp";
+                    req.setAttribute("errorBean", error);
+                    session.setAttribute("Caducado", Caducado);
+                    delegateControl(req, res, session, JSP);
+                    // Inicio(out, req, res, session);
                 } else {
                     Enumeration param = req.getParameterNames();
                     while (param.hasMoreElements()) {
                         String valor = (String) param.nextElement();
                         session.setAttribute(valor, req.getParameter(valor));
                     }
+
+                    ResultBean result = new ResultBean();
                     if (etapa.equals("10")) { //Se sale de la primera pantala de eleccion de consulta
                         if (((String) session.getAttribute("consulta")).equals("1")) {
-                            etapa11(out, req, res, session);
+                            result.setData(getCantantes());
+                            JSP = "/etapa11.jsp";
+                            // etapa11(out, req, res, session);
                         } else {
-                            etapa12(out, req, res, session);
+                            result.setData(getAnhoAlbumes());
+                            JSP = "/etapa12.jsp";
+                            // etapa12(out, req, res, session);
                         }
                     } else {
                         if (etapa.charAt(0) == '0') { //sin etapa anterior
                             if (etapa.charAt(2) == '1') { //primera consulta
                                 if (etapa.charAt(1) == '1') {  //comprobar etapa
-                                    etapa21(out, req, res, session);
+                                    String interprete = (String) session.getAttribute("interprete");
+                                    result.setData(getAlbumCantante(interprete));
+                                    JSP = "/etapa21.jsp";
+                                    //  etapa21(out, req, res, session);
                                 } else {
-                                    resultado1(out, req, res, session);
+                                    String interprete = (String) session.getAttribute("interprete");
+                                    String album1 = (String) session.getAttribute("album1");
+                                    result.setData(getCancionesCantante(interprete, album1));
+                                    JSP = "/resultado1.jsp";
+                                    //resultado1(out, req, res, session);
                                 }
                             } else {//segunda consulta
+                                String anhio = (String) session.getAttribute("anhio");
+                                String album2 = (String) session.getAttribute("album2");
+                                String estilo = (String) session.getAttribute("estilo");
                                 switch (etapa.charAt(1)) { //comprobar etapa
                                     case '1':
-                                        etapa22(out, req, res, session);
+                                        result.setData(getAlbumesPorAnho(anhio));
+                                        JSP = "/etapa22.jsp";
+                                        //etapa22(out, req, res, session);
                                         break;
                                     case '2':
-                                        etapa32(out, req, res, session);
+                                        result.setData(getEstilo(anhio, album2));
+                                        JSP = "/etapa32.jsp";
+                                        //etapa32(out, req, res, session);
                                         break;
                                     case '3':
-                                        resultado2(out, req, res, session);
+                                        result.setData(getCancionesEstilo(anhio, album2, estilo));
+                                        JSP = "/resultado2.jsp";
+                                        // resultado2(out, req, res, session);
                                         break;
                                 }
                             }
                         } else { //Boton atras pulsado
                             if (etapa.charAt(2) == '1') { //primera consulta
                                 if (etapa.charAt(1) == '1') {  //comprobar etapa
-                                    etapa11(out, req, res, session);
+                                    result.setData(getCantantes());
+                                    JSP = "/etapa11.jsp";
+                                    //etapa11(out, req, res, session);
                                 } else {
-                                    etapa21(out, req, res, session);
+                                    String interprete = (String) session.getAttribute("interprete");
+                                    result.setData(getAlbumCantante(interprete));
+                                    JSP = "/etapa21.jsp";
+                                    //etapa21(out, req, res, session);
                                 }
                             } else {//segunda consulta
+                                String anhio = (String) session.getAttribute("anhio");
+                                String album2 = (String) session.getAttribute("album2");
                                 switch (etapa.charAt(1)) { //comprobar etapa
                                     case '1':
-                                        etapa12(out, req, res, session);
+                                        result.setData(getAnhoAlbumes());
+                                        JSP = "/etapa12.jsp";
+                                        // etapa12(out, req, res, session);
                                         break;
                                     case '2':
-                                        etapa22(out, req, res, session);
+                                        result.setData(getAlbumesPorAnho(anhio));
+                                        JSP = "/etapa22.jsp";
+                                        // etapa22(out, req, res, session);
                                         break;
                                     case '3':
-                                        etapa32(out, req, res, session);
+                                        result.setData(getEstilo(anhio, album2));
+                                        JSP = "/etapa32.jsp";
+                                        // etapa32(out, req, res, session);
                                         break;
                                 }
                             }
                         }
                     }
+                    req.setAttribute("resultBean", result);
+                    delegateControl(req, res, session, JSP);
                 }
             } else {
                 session = req.getSession(true);
                 session.setMaxInactiveInterval(20);
-                Inicio(out, req, res, session);
+                Error error = new Error();
+                error.setErrores(listError);
+                error.setFichError(listFichError);
+                JSP = "/Inicio.jsp";
+                req.setAttribute("errorBean", error);
+                session.setAttribute("Caducado", Caducado);
+                delegateControl(req, res, session, JSP);
+                //Inicio(out, req, res, session);
             }
         } catch (Throwable e) {
             session = req.getSession(true);
             session.setMaxInactiveInterval(20);
-            Inicio(out, req, res, session);
+            Error error = new Error();
+            error.setErrores(listError);
+            error.setFichError(listFichError);
+            JSP = "/Inicio.jsp";
+            req.setAttribute("errorBean", error);
+            Caducado ="La sesión ha caducado";
+            session.setAttribute("Caducado", Caducado);
+            delegateControl(req, res, session, JSP);
+            // Inicio(out, req, res, session);
         }
     }
 
@@ -379,7 +440,7 @@ public class Sint12P3 extends HttpServlet {
     }
 
 
-    public void delegateControl(HttpServletRequest req, HttpServletResponse res, HttpSession session, String jsp) throws ServletException, IOException{
+    public void delegateControl(HttpServletRequest req, HttpServletResponse res, HttpSession session, String jsp) throws ServletException, IOException {
         ServletContext cont = getServletContext();
         RequestDispatcher reqdis = cont.getRequestDispatcher(jsp);
         reqdis.forward(req, res);
@@ -408,7 +469,7 @@ public class Sint12P3 extends HttpServlet {
             Validator validator = schema.newValidator(); //<--------
             // validator.validate(new DOMSource(doc)); //2 //<--------
             validator.validate(new StreamSource(new File(XML))); // 1//<--------
-           // System.out.println("DOCUMENTO VALIDO: " + XML);
+            // System.out.println("DOCUMENTO VALIDO: " + XML);
             doc = db.parse(XML);// 1 //<--------
             listDoc.add(doc);
             NodeList iml = doc.getElementsByTagName("IML");

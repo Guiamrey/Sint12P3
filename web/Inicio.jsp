@@ -1,12 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ruth_
-  Date: 28/12/2015
-  Time: 12:15
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Consulta musical</title>
@@ -20,12 +13,22 @@
 <div>
     <div class='error'>
         <b>Errores encontrados</b>: <br>
-
-
+        <c:forEach items="${errorBean.errores}" var="listaErrores">
+            <c:out value="${listaErrores}"></c:out><br>
+        </c:forEach>
+        <c:if test="${empty errorBean.fichError}">
+            No se han encontrado errores<br>
+        </c:if>
         <br><b>Ficheros erróneos</b>: <br>
-
+        <c:forEach items="${errorBean.fichError}" var="listaFichErrores">
+            <c:out value="${listaFichErrores}"></c:out><br>
+        </c:forEach>
+        <c:if test="${empty errorBean.fichError}">
+            No se han encontrado errores<br>
+        </c:if>
 
     </div>
+    <span class="caducado"><h4><%=session.getAttribute("Caducado")%></h4></span>
     <h3>Selecciona la consulta que desea hacer</h3>
     <form method='POST' action='?etapa_10'>
         <input type='hidden' name='etapa' value='10'>
@@ -36,6 +39,6 @@
         </p>
     </form>
 </div>
-<footer>Creado por Ruth Guimarey Docampo<br>Servicios de Internet. Práctica 2</footer>
+<footer>Creado por Ruth Guimarey Docampo<br>Servicios de Internet. Práctica 3</footer>
 </body>
 </html>

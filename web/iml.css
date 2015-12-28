@@ -73,3 +73,6 @@ ul{
     margin: 0;
     font-size: 130%;
 }
+span.caducado{
+    text-decoration-color: red;
+}

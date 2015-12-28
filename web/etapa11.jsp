@@ -1,12 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ruth_
-  Date: 28/12/2015
-  Time: 12:54
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Consulta musical</title>
@@ -22,13 +15,19 @@
     <form method='POST' action='?etapa_11&consultainicial_Cantantes'>
         <input type='hidden' name='etapa' value='011'>
 
-        <input type='radio' value='Todos' name='interprete'>Todos<br>
+        <c:forEach items="${resultBean.data}" var="datos">
+            <input type='radio' value='<c:out value="${datos}"></c:out>' name='interprete'><c:out value="${datos}"></c:out>
+            <br>
+        </c:forEach>
+        <input type='radio' value='Todos' checked='' name='interprete'>Todos<br>
+
         <p>
             <input type='submit' value='Enviar'><br>
             <input type='submit' onclick='form.etapa.value=0' value='Atrás'>
             <input type='submit' onclick='form.etapa.value=0' value='Inicio'>
+        </p>
     </form>
 </div>
-<footer>Creado por Ruth Guimarey Docampo<br>Servicios de Internet. Práctica 2</footer>
+<footer>Creado por Ruth Guimarey Docampo<br>Servicios de Internet. Práctica 3</footer>
 </body>
 </html>
