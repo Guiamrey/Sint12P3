@@ -21,8 +21,6 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -39,9 +37,7 @@ public class Sint12P3 extends HttpServlet {
     public void init() {
         String URL = "sabina.xml";
         listaXML.add(URL);
-        int i = 0;
         while (listaXML.size() > 0) {
-            i++;
             String url = listaXML.get(0);
             processIML(url);
             listaXML.remove(0);
@@ -69,7 +65,7 @@ public class Sint12P3 extends HttpServlet {
                     JSP = "/Inicio.jsp";
                     req.setAttribute("errorBean", error);
                     session.setAttribute("Caducado", Caducado);
-                    ControltoJSP(req, res, session, JSP);
+                    ControltoJSP(req, res, JSP);
                 } else {
                     Enumeration param = req.getParameterNames();
                     while (param.hasMoreElements()) {
@@ -79,7 +75,7 @@ public class Sint12P3 extends HttpServlet {
 
                     ResultBean result = new ResultBean();
                     if (etapa.equals("10")) { //Se sale de la primera pantala de eleccion de consulta
-                        if (((String) session.getAttribute("consulta")).equals("1")) {
+                        if ((session.getAttribute("consulta")).equals("1")) {
                             result.setData(getCantantes());
                             JSP = "/etapa11.jsp";
                         } else {
@@ -149,7 +145,7 @@ public class Sint12P3 extends HttpServlet {
                         }
                     }
                     req.setAttribute("resultBean", result);
-                    ControltoJSP(req, res, session, JSP);
+                    ControltoJSP(req, res, JSP);
                 }
             } else {
                 session = req.getSession(true);
@@ -160,7 +156,7 @@ public class Sint12P3 extends HttpServlet {
                 JSP = "/Inicio.jsp";
                 req.setAttribute("errorBean", error);
                 session.setAttribute("Caducado", Caducado);
-                ControltoJSP(req, res, session, JSP);
+                ControltoJSP(req, res, JSP);
             }
         } catch (Throwable e) {
             session = req.getSession(true);
@@ -172,11 +168,11 @@ public class Sint12P3 extends HttpServlet {
             req.setAttribute("errorBean", error);
             Caducado = "La sesión ha caducado";
             session.setAttribute("Caducado", Caducado);
-            ControltoJSP(req, res, session, JSP);
+            ControltoJSP(req, res, JSP);
         }
     }
 
-    public void ControltoJSP(HttpServletRequest req, HttpServletResponse res, HttpSession session, String jsp) throws ServletException, IOException {
+    public void ControltoJSP(HttpServletRequest req, HttpServletResponse res, String jsp) throws ServletException, IOException {
         ServletContext cont = getServletContext();
         RequestDispatcher reqdis = cont.getRequestDispatcher(jsp);
         reqdis.forward(req, res);
