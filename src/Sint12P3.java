@@ -3,6 +3,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -159,7 +161,7 @@ public class Sint12P3 extends HttpServlet {
         out.println("<input type='radio' value='2' name='consulta'>Número de canciones");
         out.println("<br>");
         out.println("<p>");
-        out.println("<input type='submit' value='Enviar' ");
+        out.println("<input type='submit' value='Enviar'>");
         out.println("<p>");
         out.println("</form>");
         imprimirFinal(out);
@@ -375,6 +377,14 @@ public class Sint12P3 extends HttpServlet {
         out.println("</body>");
         out.println("</html>");
     }
+
+
+    public void delegateControl(HttpServletRequest req, HttpServletResponse res, HttpSession session, String jsp) throws ServletException, IOException{
+        ServletContext cont = getServletContext();
+        RequestDispatcher reqdis = cont.getRequestDispatcher(jsp);
+        reqdis.forward(req, res);
+    }
+
 
     /*************************************************************************************************************************************
      * **********************************************************************************************************************************
